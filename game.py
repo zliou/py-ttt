@@ -3,7 +3,7 @@ import printer
 
 BOARD_WIDTH = 3
 BOARD_HEIGHT = 3
-COMMAND_QUIT = "Q"
+COMMAND_QUIT = "q"
 PLAYER_TO_TOKEN = {
     0: " ",
     1: "X",
