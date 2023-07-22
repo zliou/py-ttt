@@ -14,11 +14,14 @@ t, d = [], []
 ttt = TicTacToeGame()
 
 
+# Try-move tests.
 test(t, d, ttt.try_move(1, 1) == True,      "try_move: Valid move.")
 test(t, d, ttt.try_move(1, 1) == False,     "try_move: Invalid move: position occupied.")
 test(t, d, ttt.try_move(9, 2) == False,     "try_move: Invalid player id.")
 test(t, d, ttt.try_move(2, 0) == False,     "try_move: Invalid position.")
 
+
+# Win checking tests.
 ttt.board = [
     [1,1,1],
     [0,2,0],
@@ -26,7 +29,6 @@ ttt.board = [
 ]
 test(t, d, ttt.check_win() == 1,            "check_win: Valid win with row.")
 test(t, d, ttt.check_row(0) == 1,           "check_row: Winning row.")
-print("asdf")
 test(t, d, ttt.check_row(1) == 0,           "check_row: Not a winning row.")
 ttt.board = [
     [1,2,1],
@@ -35,9 +37,8 @@ ttt.board = [
 ]
 test(t, d, ttt.check_win() == 2,            "check_win: Valid win with col.")
 test(t, d, ttt.check_col(1) == 2,           "check_col: Winning col.")
-print("asdf")
 test(t, d, ttt.check_col(2) == 0,           "check_col: Not a winning col.")
-test(t, d, ttt.check_diagonals() == 0,     "check_diagonals: No winning diagonals.")
+test(t, d, ttt.check_diagonals() == 0,      "check_diagonals: No winning diagonals.")
 ttt.board = [
     [1,1,2],
     [0,2,0],
@@ -53,7 +54,7 @@ test(t, d, ttt.check_diagonals() == 1,     "check_diagonals: Winning diagonal: T
 test(t, d, ttt.check_win() == 1,           "check_win: Valid win with diagonal.")
 
 
-
+# Run tests.
 all_tests_passed = True
 for i in range(len(t)):
     if not t[i]:
