@@ -1,4 +1,5 @@
 from typing import List
+import os
 
 
 BOARD_INDENT = "    "
@@ -21,7 +22,9 @@ POSITION_TO_INDEXES = {
 
 
 def clear_screen():
+    # os.system('cls' if os.name=='nt' else 'clear')
     print("\033c", end="")
+
 
 
 def render_board(board: List[List[int]]):
@@ -48,8 +51,13 @@ def render_instructions():
     print("Enter [q] to quit")
 
 
-def render():
+def render_end(board: List[List[int]]):
     clear_screen()
-    render_board()
+    render_board(board)
+    
+
+def render(board: List[List[int]]):
+    clear_screen()
+    render_board(board)
     render_instructions()
 

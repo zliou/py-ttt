@@ -4,6 +4,11 @@ import printer
 BOARD_WIDTH = 3
 BOARD_HEIGHT = 3
 COMMAND_QUIT = "Q"
+PLAYER_TO_TOKEN = {
+    0: " ",
+    1: "X",
+    2: "O",
+}
 
 
 class TicTacToeGame:
@@ -33,17 +38,17 @@ class TicTacToeGame:
         active_player = 1  # Player 1 goes first.
         while not self.is_board_full():
             # Print the board before each move.
-            printer.render_board(self.board)
+            printer.render(self.board)
 
             turn_result = self.turn(active_player)
             if turn_result == -1:
-                print("Player {0} left the game.".format(active_player))
+                print("{0} left the game.".format(PLAYER_TO_TOKEN[active_player]))
                 print("Game over!")
                 return
             elif turn_result != 0:
                 # Reprint the board when someone wins.
-                printer.render_board(self.board)
-                print("Player {0} wins!".format(active_player))
+                printer.render_end(self.board)
+                print("{0} wins!".format(PLAYER_TO_TOKEN[active_player]))
                 print("Thanks for playing!")
                 return
             
@@ -51,7 +56,7 @@ class TicTacToeGame:
             active_player = 2 if active_player == 1 else 1
 
         # Reprint the board before exiting from a tie.
-        printer.render_board(self.board)
+        printer.render_end(self.board)
 
         print("It's a tie. Game over!")
         print("Thanks for playing!")
@@ -59,10 +64,10 @@ class TicTacToeGame:
 
 
     """
-    Run a single turn of the game.
+    Run a single turn of the game. Returns a winner if there is one, else 0.
     """
     def turn(self, player: int) -> int:
-        print("It's player {0}'s turn.".format(player))
+        print("It's {0}'s turn.".format(PLAYER_TO_TOKEN[player]))
         # Take player input until a player wins, the board is full, or the quit
         # command is issued.
         while True:
@@ -75,6 +80,8 @@ class TicTacToeGame:
             position = int(position_input)
             if self.try_move(player, position):
                 break
+            else:
+                print("That spot is taken - try another spot.")
         return self.check_win()
 
 
