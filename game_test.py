@@ -14,10 +14,44 @@ t, d = [], []
 ttt = TicTacToeGame()
 
 
-test(t, d, ttt.try_move(1, 1) == True,      "Valid move."),
-test(t, d, ttt.try_move(1, 1) == False,     "Invalid move: position occupied."),
-test(t, d, ttt.try_move(9, 2) == False,     "Invalid player id."),
-test(t, d, ttt.try_move(2, 0) == False,     "Invalid position."),
+test(t, d, ttt.try_move(1, 1) == True,      "try_move: Valid move.")
+test(t, d, ttt.try_move(1, 1) == False,     "try_move: Invalid move: position occupied.")
+test(t, d, ttt.try_move(9, 2) == False,     "try_move: Invalid player id.")
+test(t, d, ttt.try_move(2, 0) == False,     "try_move: Invalid position.")
+
+ttt.board = [
+    [1,1,1],
+    [0,2,0],
+    [0,2,0],
+]
+test(t, d, ttt.check_win() == 1,            "check_win: Valid win with row.")
+test(t, d, ttt.check_row(0) == 1,           "check_row: Winning row.")
+print("asdf")
+test(t, d, ttt.check_row(1) == 0,           "check_row: Not a winning row.")
+ttt.board = [
+    [1,2,1],
+    [0,2,0],
+    [0,2,0],
+]
+test(t, d, ttt.check_win() == 2,            "check_win: Valid win with col.")
+test(t, d, ttt.check_col(1) == 2,           "check_col: Winning col.")
+print("asdf")
+test(t, d, ttt.check_col(2) == 0,           "check_col: Not a winning col.")
+test(t, d, ttt.check_diagonals() == 0,     "check_diagonals: No winning diagonals.")
+ttt.board = [
+    [1,1,2],
+    [0,2,0],
+    [2,1,0],
+]
+test(t, d, ttt.check_diagonals() == 2,     "check_diagonals: Winning diagonal: BL-TR.")
+ttt.board = [
+    [1,1,2],
+    [0,1,0],
+    [2,2,1],
+]
+test(t, d, ttt.check_diagonals() == 1,     "check_diagonals: Winning diagonal: TL-BR.")
+test(t, d, ttt.check_win() == 1,           "check_win: Valid win with diagonal.")
+
 
 
 all_tests_passed = True
@@ -25,10 +59,12 @@ for i in range(len(t)):
     if not t[i]:
         all_tests_passed = False
 
-    result_str = "PASSED" if t[i] else "FAILED"
-    print("[" + result_str + "]", d[i])
+    result_str = "--[PASS]" if t[i] else "[FAILED]"
+    print(result_str, d[i])
 
 if all_tests_passed:
     print("All tests passed! :)")
+else:
+    print("Some tests did not pass. See above for details.")
 
 
