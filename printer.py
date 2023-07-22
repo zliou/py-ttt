@@ -46,16 +46,3 @@ def render_board(board: List[List[int]]):
 def render_instructions():
     print("Enter [q] to quit")
 
-
-"""
-To test this file, uncomment the section below.
-"""
-test_board = [
-    [1,2,0],
-    [0,1,2],
-    [2,0,1],
-]
-
-clear_screen()
-render_board(test_board)
-
