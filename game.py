@@ -1,3 +1,6 @@
+import printer
+
+
 BOARD_WIDTH = 3
 BOARD_HEIGHT = 3
 COMMAND_QUIT = "Q"
@@ -5,11 +8,15 @@ COMMAND_QUIT = "Q"
 
 class TicTacToeGame:
     def __init__(self):
-        self.board = [[0] * BOARD_WIDTH] * BOARD_HEIGHT
+        self.board = []
+        for i in range(BOARD_HEIGHT):
+            row = []
+            for j in range(BOARD_WIDTH):
+                row.append(0)
+            self.board.append(row)
 
 
     def get_player_input(self) -> str:
-        print("Pick a position (1 through 9) and press [Enter] to play it.")
         return input()
 
 
@@ -20,9 +27,42 @@ class TicTacToeGame:
 
 
     """
+    Play the game until a player wins, the board is full, or the quit command is received.
+    """
+    def play(self) -> None:
+        active_player = 1  # Player 1 goes first.
+        while not self.is_board_full():
+            # Print the board before each move.
+            printer.render_board(self.board)
+
+            turn_result = self.turn(active_player)
+            if turn_result == -1:
+                print("Player {0} left the game.".format(active_player))
+                print("Game over!")
+                return
+            elif turn_result != 0:
+                # Reprint the board when someone wins.
+                printer.render_board(self.board)
+                print("Player {0} wins!".format(active_player))
+                print("Thanks for playing!")
+                return
+            
+            # Alternate turns between player 1 and 2.
+            active_player = 2 if active_player == 1 else 1
+
+        # Reprint the board before exiting from a tie.
+        printer.render_board(self.board)
+
+        print("It's a tie. Game over!")
+        print("Thanks for playing!")
+        return
+
+
+    """
     Run a single turn of the game.
     """
     def turn(self, player: int) -> int:
+        print("It's player {0}'s turn.".format(player))
         # Take player input until a player wins, the board is full, or the quit
         # command is issued.
         while True:
@@ -104,8 +144,8 @@ class TicTacToeGame:
 
     def check_col(self, col: int) -> int:
         if (self.board[0][col] == 1 or self.board[0][col]  == 2) and (
-                self.board[0][col]  == self.board[1][col]  and 
-                self.board[1][col]  == self.board[2][col] ):
+                self.board[0][col] == self.board[1][col]  and 
+                self.board[1][col] == self.board[2][col]):
             return self.board[0][col] 
         return 0
 

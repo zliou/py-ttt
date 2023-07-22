@@ -44,5 +44,12 @@ def render_board(board: List[List[int]]):
 
 
 def render_instructions():
+    print("Pick a position (1 through 9) and press [Enter] to play it.")
     print("Enter [q] to quit")
+
+
+def render():
+    clear_screen()
+    render_board()
+    render_instructions()
 

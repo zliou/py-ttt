@@ -97,9 +97,9 @@ ttt.get_player_input = lambda: "3"  # Mock get_player_input
 test(t, d, ttt.turn(1) == 0,                "turn: Turn with valid position.")
 # test(t, d, ttt.turn(2) == 0,                "turn: Turn with invalid position.")
 ttt.get_player_input = lambda: "9"  # Mock get_player_input
-test(t, d, ttt.turn(2) == 2,                "turn: Turn with valid position resulting in win.")
+test(t, d, ttt.turn(2) == 2,                "turn: Turn with valid position resulting in P2 win.")
 ttt.get_player_input = lambda: "Q"  # Mock get_player_input
-test(t, d, ttt.turn(2) == -1,                "turn: Turn with quit command.")
+test(t, d, ttt.turn(2) == -1,               "turn: Turn with quit command.")
 
 
 # -------------------------------------------------------------------
@@ -119,5 +119,4 @@ if all_tests_passed:
 else:
     print("game_test.py: Some tests did not pass. See above for details.")
 print("")
-
 
