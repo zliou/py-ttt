@@ -8,16 +8,10 @@ PLAYER_TO_TOKEN = {
     1: "X",
     2: "O",
 }
-POSITION_TO_INDEXES = {
-    1: (0, 0),  # (row, col)
-    2: (0, 1),
-    3: (0, 2),
-    4: (1, 0),
-    5: (1, 1),
-    6: (1, 2),
-    7: (2, 0),
-    8: (2, 1),
-    9: (2, 2),
+SUPERSCRIPT = {
+    1: "¹", 2: "²", 3: "³",
+    4: "⁴", 5: "⁵", 6: "⁶",
+    7: "⁷", 8: "⁸", 9: "⁹",
 }
 
 
@@ -26,23 +20,45 @@ def clear_screen():
     print("\033c", end="")
 
 
+def render_blank_row():
+    print(BOARD_INDENT + "     |     |     ")
+
+
+def render_player_row(row: List[int]):
+    print(BOARD_INDENT + "  {0}  |  {1}  |  {2}  ".format(
+            PLAYER_TO_TOKEN[row[0]],
+            PLAYER_TO_TOKEN[row[1]],
+            PLAYER_TO_TOKEN[row[2]]))
+
+
+def render_position_row(start: int):
+    print(BOARD_INDENT + "{0}    |{1}    |{2}    ".format(
+            SUPERSCRIPT[start], SUPERSCRIPT[start + 1], SUPERSCRIPT[start + 2]))
+
+
+def render_separator():
+    print(BOARD_INDENT + "-----+-----+-----")
+
 
 def render_board(board: List[List[int]]):
     print("")
-    print(BOARD_INDENT + " {0} | {1} | {2} ".format(
-            PLAYER_TO_TOKEN[board[0][0]],
-            PLAYER_TO_TOKEN[board[0][1]],
-            PLAYER_TO_TOKEN[board[0][2]]))
-    print(BOARD_INDENT + "---+---+---")
-    print(BOARD_INDENT + " {0} | {1} | {2} ".format(
-            PLAYER_TO_TOKEN[board[1][0]],
-            PLAYER_TO_TOKEN[board[1][1]],
-            PLAYER_TO_TOKEN[board[1][2]]))
-    print(BOARD_INDENT + "---+---+---")
-    print(BOARD_INDENT + " {0} | {1} | {2} ".format(
-            PLAYER_TO_TOKEN[board[2][0]],
-            PLAYER_TO_TOKEN[board[2][1]],
-            PLAYER_TO_TOKEN[board[2][2]]))
+
+    render_position_row(1)
+    render_player_row(board[0])
+    render_blank_row()
+
+    render_separator()
+
+    render_position_row(4)
+    render_player_row(board[1])
+    render_blank_row()
+
+    render_separator()
+
+    render_position_row(7)
+    render_player_row(board[2])
+    render_blank_row()
+
     print("")
 
 
