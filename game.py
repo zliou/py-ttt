@@ -68,6 +68,17 @@ class TicTacToeGame:
 
 
     """
+    Return whether the board has no more open positions.
+    """
+    def is_board_full(self) -> bool:
+        for row in self.board:
+            for position in row:
+                if position == 0:
+                    return False
+        return True
+
+
+    """
     Check the board for a win. Return the winning player id. 0 if no winner.
     """
     def check_win(self) -> int:

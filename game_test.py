@@ -20,6 +20,8 @@ ttt = TicTacToeGame()
 
 
 # -------------------------------------------------------------------
+# Run tests.
+# NOTE: The tests below may be order-dependent.
 
 
 # Try-move tests.
@@ -27,6 +29,21 @@ test(t, d, ttt.try_move(1, 1) == True,      "try_move: Valid move.")
 test(t, d, ttt.try_move(1, 1) == False,     "try_move: Invalid move: position occupied.")
 test(t, d, ttt.try_move(9, 2) == False,     "try_move: Invalid player id.")
 test(t, d, ttt.try_move(2, 0) == False,     "try_move: Invalid position.")
+
+
+# Board tests.
+ttt.board = [
+    [0,0,0],
+    [0,0,0],
+    [0,0,0],
+]
+test(t, d, ttt.is_board_full() == False,    "is_board_full: Board is not full.")
+ttt.board = [
+    [1,2,1],
+    [2,2,1],
+    [2,1,2],
+]
+test(t, d, ttt.is_board_full() == True,     "is_board_full: Board is full.")
 
 
 # Win checking tests.
@@ -98,8 +115,9 @@ for i in range(len(t)):
     print(result_str, d[i])
 
 if all_tests_passed:
-    print("All tests passed! :)")
+    print("game_test.py: All tests passed! :)")
 else:
-    print("Some tests did not pass. See above for details.")
+    print("game_test.py: Some tests did not pass. See above for details.")
+print("")
 
 
