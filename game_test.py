@@ -18,7 +18,9 @@ def test(results: List[bool], descriptions: List[str], result: bool, description
 t, d = [], []
 ttt = TicTacToeGame()
 
+
 # -------------------------------------------------------------------
+
 
 # Try-move tests.
 test(t, d, ttt.try_move(1, 1) == True,      "try_move: Valid move.")
@@ -59,7 +61,25 @@ ttt.board = [
 test(t, d, ttt.check_diagonals() == 1,     "check_diagonals: Winning diagonal: TL-BR.")
 test(t, d, ttt.check_win() == 1,           "check_win: Valid win with diagonal.")
 
+
+# Turn tests.
+ttt.board = [
+    [0,0,0],
+    [0,1,0],
+    [2,2,0],
+]
+
+ttt.get_player_input = lambda: "3"  # Mock get_player_input
+test(t, d, ttt.turn(1) == 0,                "turn: Turn with valid position.")
+#test(t, d, ttt.turn(2) == 0,                "turn: Turn with invalid position.")
+ttt.get_player_input = lambda: "9"  # Mock get_player_input
+test(t, d, ttt.turn(2) == 2,                "turn: Turn with valid position resulting in win.")
+ttt.get_player_input = lambda: "Q"  # Mock get_player_input
+test(t, d, ttt.turn(2) == -1,                "turn: Turn with quit command.")
+
+
 # -------------------------------------------------------------------
+
 
 # Run tests.
 all_tests_passed = True

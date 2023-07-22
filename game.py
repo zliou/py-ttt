@@ -1,11 +1,38 @@
 BOARD_WIDTH = 3
 BOARD_HEIGHT = 3
+COMMAND_QUIT = "Q"
 
 
 class TicTacToeGame:
 
     def __init__(self):
         self.board = [[0] * BOARD_WIDTH] * BOARD_HEIGHT
+
+    def get_player_input(self) -> str:
+        # TODO: Implement this.
+        return COMMAND_QUIT
+
+    def is_valid_input(self, input_str) -> bool:
+        # TODO: Implement this.
+        return True
+
+    """
+    Run a single turn of the game.
+    """
+    def turn(self, player: int) -> int:
+        # Take player input until a player wins, the board is full, or the quit
+        # command is issued.
+        while True:
+            position_input = self.get_player_input()
+            if not self.is_valid_input(position_input):
+                print("Invalid input.")
+                continue
+            if position_input == COMMAND_QUIT:
+                return -1
+            position = int(position_input)
+            if self.try_move(player, position):
+                break
+        return self.check_win()
 
     """
     Attempt to place the given player's token at the given position.
