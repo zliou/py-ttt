@@ -1,5 +1,8 @@
 Author: Zachary Liou
+
 Date: July 22, 2023
+
+## Tic-Tac-Toe
 
 This is a tic-tac-toe game that can be played on the terminal.
 
