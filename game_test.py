@@ -1,18 +1,24 @@
+"""
+File: game_test.py
+Date: 2023 July 22
+
+To run these tests, run the command:
+    $ python3 game_test.py
+"""
 from typing import List
 
 from game import TicTacToeGame
 
 
+# Define test utilities.
 def test(results: List[bool], descriptions: List[str], result: bool, description: str):
     descriptions.append(description)
     results.append(result)
 
-
 t, d = [], []
-
-
 ttt = TicTacToeGame()
 
+# -------------------------------------------------------------------
 
 # Try-move tests.
 test(t, d, ttt.try_move(1, 1) == True,      "try_move: Valid move.")
@@ -53,6 +59,7 @@ ttt.board = [
 test(t, d, ttt.check_diagonals() == 1,     "check_diagonals: Winning diagonal: TL-BR.")
 test(t, d, ttt.check_win() == 1,           "check_win: Valid win with diagonal.")
 
+# -------------------------------------------------------------------
 
 # Run tests.
 all_tests_passed = True
