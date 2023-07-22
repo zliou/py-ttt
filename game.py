@@ -9,8 +9,8 @@ class TicTacToeGame:
 
 
     def get_player_input(self) -> str:
-        # TODO: Implement this.
-        return COMMAND_QUIT
+        print("Pick a position (1 through 9) and press [Enter] to play it.")
+        return input()
 
 
     def is_valid_input(self, input_str) -> bool:

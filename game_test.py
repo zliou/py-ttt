@@ -66,6 +66,7 @@ test(t, d, ttt.check_win() == 1,            "check_win: Valid win with diagonal.
 test(t, d, ttt.is_valid_input("1"),         "is_valid_input: Valid input.")
 test(t, d, ttt.is_valid_input("0") == False,"is_valid_input: Invalid input.")
 test(t, d, ttt.is_valid_input("Q"),         "is_valid_input: Quit command.")
+# test(t, d, ttt.get_player_input() == "3",   "get_player_input: Player inputs '3'")
 
 
 # Turn tests.
@@ -77,7 +78,7 @@ ttt.board = [
 
 ttt.get_player_input = lambda: "3"  # Mock get_player_input
 test(t, d, ttt.turn(1) == 0,                "turn: Turn with valid position.")
-#test(t, d, ttt.turn(2) == 0,                "turn: Turn with invalid position.")
+# test(t, d, ttt.turn(2) == 0,                "turn: Turn with invalid position.")
 ttt.get_player_input = lambda: "9"  # Mock get_player_input
 test(t, d, ttt.turn(2) == 2,                "turn: Turn with valid position resulting in win.")
 ttt.get_player_input = lambda: "Q"  # Mock get_player_input
