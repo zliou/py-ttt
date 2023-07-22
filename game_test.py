@@ -52,14 +52,20 @@ ttt.board = [
     [0,2,0],
     [2,1,0],
 ]
-test(t, d, ttt.check_diagonals() == 2,     "check_diagonals: Winning diagonal: BL-TR.")
+test(t, d, ttt.check_diagonals() == 2,      "check_diagonals: Winning diagonal: BL-TR.")
 ttt.board = [
     [1,1,2],
     [0,1,0],
     [2,2,1],
 ]
-test(t, d, ttt.check_diagonals() == 1,     "check_diagonals: Winning diagonal: TL-BR.")
-test(t, d, ttt.check_win() == 1,           "check_win: Valid win with diagonal.")
+test(t, d, ttt.check_diagonals() == 1,      "check_diagonals: Winning diagonal: TL-BR.")
+test(t, d, ttt.check_win() == 1,            "check_win: Valid win with diagonal.")
+
+
+# Input tests.
+test(t, d, ttt.is_valid_input("1"),         "is_valid_input: Valid input.")
+test(t, d, ttt.is_valid_input("0") == False,"is_valid_input: Invalid input.")
+test(t, d, ttt.is_valid_input("Q"),         "is_valid_input: Quit command.")
 
 
 # Turn tests.

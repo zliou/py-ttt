@@ -14,8 +14,9 @@ class TicTacToeGame:
 
 
     def is_valid_input(self, input_str) -> bool:
-        # TODO: Implement this.
-        return True
+        return (len(input_str) == 1
+                and (input_str <= "9" and input_str >= "1")
+                or input_str == COMMAND_QUIT)
 
 
     """
